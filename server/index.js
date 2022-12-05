@@ -23,7 +23,7 @@ app.get('/', (req, res) => res.send('Hello World NodeJs'));
 app.get('/search/movies', (req, res) => {
     const clientId = config.clientId;
     const clientSecret = config.clientSecret;
-    let apiUrl = `https://openapi.naver.com/v1/search/movie?query=${encodeURI(req.query.query)}`;
+    let apiUrl = `https://openapi.naver.com/v1/search/movie?query=${encodeURI(req.query.query)}`; 
     let params = req.query;
     for(const [key, value] of Object.entries(params)){
         if(key != 'query'){
