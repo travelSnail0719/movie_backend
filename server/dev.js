@@ -1,9 +1,9 @@
 module.exports = {
     // db정보
-    host: "localhost",
+    host: "moviesearch.cvshui9mwcqj.ap-northeast-1.rds.amazonaws.com",
     user: "travelSnail",
     password: "qlscks2!!",
-    database: "MOVIE",
+    database: "movieSearch",
     insecureAuth : true,
     // aip정보
     clientId : 'LmNODgfdOY8Pyxm6YDvS',
