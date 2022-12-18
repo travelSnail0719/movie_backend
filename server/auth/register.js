@@ -40,6 +40,8 @@ const register = (req, res) => {
                 console.log('error', error);
             }
         })
+    } else {
+        res.json({message : '입력하지 않은 항목이 있습니다.'});
     }
 }
 module.exports = {register};
