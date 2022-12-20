@@ -11,6 +11,6 @@ module.exports = {
     clientSecret : 'bNs1TF3fhN',
 
     // 구글 계정
-    googleID : 'ycbkr0719@gmail.com',
-    googlePW : 'qlscks2!!'
+    naverID : 'ycbkr0719@naver.com',
+    naverPW : '$0&7#1@98723541'
 }
