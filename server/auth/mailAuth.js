@@ -31,8 +31,8 @@ const randomCode = createRandom(000000, 999999);
 
 const mailSend = async (req, res) => {
     const userMail = req.body.userMail;
-
-    db.query('SELECT USER_MAIL FROM T_USER WHERE USER_MAIL = ?', [userMail], (error, checkDuplicate) => {
+    // 동일한 메일로 여러 아이디 회원가입 가능
+    // db.query('SELECT USER_MAIL FROM T_USER WHERE USER_MAIL = ?', [userMail], (error, checkDuplicate) => {
         if(checkDuplicate.length <= 0){
             const mailOptions = {
                 from : config.naverID,
@@ -58,12 +58,10 @@ const mailSend = async (req, res) => {
 
             smtpTransport.sendMail(mailOptions, (err, result) => {
                 if(err){
-                    console.log(err);
+                    console.log('err', err);
                 } else {
                     console.log('success!!!!');
-                    let createNumber = {};
-                    createNumber.randomNumber = randomCode;
-                    res.send(createNumber);
+                    console.log('result', result);
                 }
                 smtpTransport.close();
             });
@@ -72,6 +70,6 @@ const mailSend = async (req, res) => {
             res.json({message : '동일한 이메일이 존재합니다.'});
             return;
         }
-    })
+    // })
 }
 module.exports = {mailSend};
