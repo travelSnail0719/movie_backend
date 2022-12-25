@@ -6,10 +6,22 @@ const {searchMovies} = require('./movieApi/searchMovies');
 const {register} = require('./auth/register');
 const {mailSend} = require('./auth/mailAuth');
 const cors = require('cors');
+const session = require('express-session');
+const memorySession = require('memorystore')(session);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
+const maxAge = 1000 * 60 * 5;
+app.use(session({
+    secret : 'secret key',
+    resave : false,
+    saveUninitialized : true,
+    store : new memorySession({checkPeriod : maxAge}),
+    cookie:{
+        maxAge
+    }
+}));
 
 app.get('/', (req, res) => res.send('Hello World NodeJs'));
 
@@ -19,7 +31,7 @@ app.get('/search/movies', searchMovies);
 // 회원가입
 app.post('/register', register);
 
-// 호원가입 인증메일 발송
+// 회원가입 인증메일 발송
 app.post('/mailSend', mailSend);
 
 app.listen(port, () => console.log(`let's start listening on port ${port}`));
