@@ -4,7 +4,8 @@ const port = 8000;
 const bodyParser = require('body-parser');
 const {searchMovies} = require('./movieApi/searchMovies');
 const {register} = require('./auth/register');
-const {mailSend} = require('./auth/mailAuth');
+const {mailSend} = require('./auth/mailSend');
+const {mailAuth} = require('./auth/mailAuth');
 const cors = require('cors');
 const session = require('express-session');
 const memorySession = require('memorystore')(session);
@@ -33,5 +34,8 @@ app.post('/register', register);
 
 // 회원가입 인증메일 발송
 app.post('/mailSend', mailSend);
+
+// 인증번호 일치여부 확인
+app.post('/mailAuth', mailAuth);
 
 app.listen(port, () => console.log(`let's start listening on port ${port}`));

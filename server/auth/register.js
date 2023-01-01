@@ -10,7 +10,6 @@ const db = mysql.createConnection({
     insecureAuth : config.insecureAuth
 });
 
-
 const register = (req, res) => {
     const userId = req.body.userId;
     const userNm = req.body.userNm;
@@ -18,10 +17,9 @@ const register = (req, res) => {
     const userGen = req.body.userGen;
     const userBir = req.body.userBir;
     const userMail = req.body.userMail;
-    const authNum = req.body.authNum;
     
     // 인증번호 일치 확인
-    if(authNum == req.session.authNum){
+    if(req.session.authCheck){
         // 모든 정보 다 들어왔는지 채크
         if(userId != null && userNm != null && userPw != null && userGen != null && userBir != null && userMail != null){
             // 아이디 중복체크
@@ -48,8 +46,7 @@ const register = (req, res) => {
             return res.json({message : '입력하지 않은 항목이 있습니다.'});
         }
     } else {
-        return res.json({code : '400'})
+        return res.json({message : '인증번호 일치여부를 확인해주세요'});
     }
-    
 }
 module.exports = {register};
