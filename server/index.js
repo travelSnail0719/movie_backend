@@ -6,6 +6,7 @@ const {searchMovies} = require('./movieApi/searchMovies');
 const {register} = require('./auth/register');
 const {mailSend} = require('./auth/mailSend');
 const {mailAuth} = require('./auth/mailAuth');
+const {login} = require('./login/login');
 const cors = require('cors');
 const session = require('express-session');
 const memorySession = require('memorystore')(session);
@@ -37,5 +38,8 @@ app.post('/mailSend', mailSend);
 
 // 인증번호 일치여부 확인
 app.post('/mailAuth', mailAuth);
+
+// 로그인
+app.post('/login', login);
 
 app.listen(port, () => console.log(`let's start listening on port ${port}`));
