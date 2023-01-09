@@ -31,11 +31,7 @@ const register = (req, res) => {
                         if(err){
                             return res.send(err);
                         } else {
-                            res.json({message : '회원가입 성공!'});
-                            // req.session.destroy(() => {
-                            //     console.log('세션 삭제 성공');
-                            //     console.log('???', req.session);
-                            // })
+                            res.status(200).json({message : '회원가입 성공!'})
                         }
                     }) 
                 } else {
